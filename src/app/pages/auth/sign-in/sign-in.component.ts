@@ -21,6 +21,12 @@ export class SignInComponent implements OnInit {
     this.baseLoginForm()
   }
 
+  submitForm() {
+    this.submittingForm = true;
+    localStorage.setItem('isLoggedin', 'true');
+    this.router.navigate(['/']);
+  }
+
   baseLoginForm() {
     this.loginForm = this.fb.group({
       'email': ['', [Validators.required, CustomValidators.email, CustomValidators.equal(this.emailTesting)]],

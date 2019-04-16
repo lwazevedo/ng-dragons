@@ -14,7 +14,12 @@ import { FullComponent } from './layouts/full/full.component';
 
 @NgModule({
   declarations: [AppComponent, BlankComponent, FullComponent],
-  imports: [CommonModule, BrowserModule, RouterModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
