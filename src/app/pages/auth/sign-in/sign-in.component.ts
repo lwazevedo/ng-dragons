@@ -29,8 +29,8 @@ export class SignInComponent implements OnInit {
 
   baseLoginForm() {
     this.loginForm = this.fb.group({
-      'email': ['', [Validators.required, CustomValidators.email, CustomValidators.equal(this.emailTesting)]],
-      'password': ['', [Validators.required, CustomValidators.equal(this.passwordTestig)]]
+      'email': [this.emailTesting, [Validators.required, CustomValidators.email, CustomValidators.equal(this.emailTesting)]],
+      'password': [this.passwordTestig, [Validators.required, CustomValidators.equal(this.passwordTestig)]]
     });
   }
 

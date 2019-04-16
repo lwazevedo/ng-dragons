@@ -1,0 +1,18 @@
+<div class="small-box bg-green" [@itemAppeared]="itemState">
+  <div class="inner">
+    <h4>{{dragon.name}}</h4>
+    <span>
+      <p><small>{{dragon.type}}</small></p>
+      <p><small>{{dragon.createdAt | date:'dd/MM/yyyy'}}</small></p>
+    </span>
+  </div>
+  <div class="icon">
+    <i class="fa  fa-user"></i>
+  </div>
+  <a [routerLink]="['/dragons', dragon.id]" class="small-box-footer color-text-star">
+    More info <i class="fa fa-arrow-circle-right"></i>
+  </a>
+  <!-- <a [routerLink]="['/dragons', dragon.id]" class="small-box-footer color-text-star">
+    Delete <i class="fa fa-arrow-circle-right"></i>
+  </a> -->
+</div>

@@ -1,3 +1,16 @@
-<p>
-  list works!
-</p>
+<section class="content">
+
+    <div class="row">
+
+        <div *ngFor="let dragon of dragons" class="col-sm-6 col-xs-12">
+            <app-item *ngIf="dragon.name !== ' '" [dragon]="dragon"></app-item>
+        </div>
+        <div *ngIf="dragons?.length === 0" class="col-xs-12">
+            <p class="lead text-center">
+                Não foram encontrados dragões.
+            </p>
+        </div>
+
+    </div>
+
+</section>
