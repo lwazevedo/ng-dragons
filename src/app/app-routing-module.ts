@@ -21,6 +21,21 @@ const routes: Routes = [
         ]
     },
     {
+        path: '',
+        component: FullComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'dragons',
+                pathMatch: 'full'
+            },
+            {
+                path: 'dragons',
+                loadChildren: './pages/dragons/dragons.module#DragonsModule'
+            }
+        ]
+    },
+    {
         path: '**',
         redirectTo: ''
     }

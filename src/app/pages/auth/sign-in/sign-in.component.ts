@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
   submitForm() {
     this.submittingForm = true;
     localStorage.setItem('isLoggedin', 'true');
-    this.router.navigate(['/']);
+    this.router.navigate(['/dragons']);
   }
 
   baseLoginForm() {

@@ -1,10 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
+
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing-module'
@@ -17,6 +18,7 @@ import { FullComponent } from './layouts/full/full.component';
   imports: [
     CommonModule,
     BrowserModule,
+    SharedModule,
     RouterModule,
     BrowserAnimationsModule,
     AppRoutingModule],
