@@ -6,7 +6,22 @@
     </div>
     <div class="row">
         <div *ngFor="let dragon of dragons" class="col-sm-3 col-xs-12">
-            <app-item [dragon]="dragon"></app-item>
+            <div class="card border-success mb-3">
+                <div class="card-header bg-transparent border-success">{{dragon.name}}</div>
+                <div class="card-body text-success">
+                    <h6 class="card-subtitle mb-2 text-muted">Criado em: {{dragon.createdAt | dateFormat}}</h6>
+                    <p class="card-text text-muted">Tipo: {{dragon.type}}
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-success text-rigth">
+                    <button type="button" class="btn btn-sm btn-default ml-2"
+                        [routerLink]="['/dragons/editar', dragon.id]"
+                        class="btn btn-sm btn-default mr-2">Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger ml-2"
+                        (click)="deletarItem(dragon.id)">Deletar</button>
+                </div>
+            </div>
+            <!-- <app-item [dragon]="dragon"></app-item> -->
         </div>
         <div *ngIf="dragons?.length === 0" class="col-xs-12">
             <p class="lead text-center">

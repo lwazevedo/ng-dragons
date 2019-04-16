@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
 import { HeaderComponent } from './header/header.component'
 import { DateFormat } from './pipes/date-format.pipe'
-import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   declarations: [InputComponent, HeaderComponent, DateFormat],
@@ -14,9 +14,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule
+    ReactiveFormsModule
   ],
-  exports: [InputComponent, HeaderComponent, DateFormat, NgxSpinnerModule]
+  exports: [InputComponent, HeaderComponent, DateFormat]
 })
 export class SharedModule { }

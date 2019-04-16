@@ -13,7 +13,7 @@
 }
 .loading::before {
   content: '';
-  background-color: #1c8db7;
+  background-color: #3ca659;
 }
 .loading::after {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;

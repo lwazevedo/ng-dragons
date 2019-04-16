@@ -1,29 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
-
+import { first } from 'rxjs/operators';
 import { DragonsService } from '../dragons.service';
 import { Item } from './item/item.model';
 
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
-  animations: [
-    trigger('toggleSearch', [
-      state('hidden', style({
-        opacity: 0,
-        'max-height': '0px'
-      })),
-      state('visible', style({
-        opacity: 1,
-        'max-height': '70px',
-        'margin-top': '20px'
-      })),
-      transition('* => *', animate('250ms 0s ease-in-out'))
-    ])
-  ]
+  styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
 
@@ -32,13 +18,16 @@ export class ListComponent implements OnInit {
   searchForm: FormGroup;
   searchControl: FormControl;
 
-  constructor(private dragonService: DragonsService, private fb: FormBuilder) {
+  constructor(private dragonService: DragonsService,
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService) {
 
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.dragonService.getAll().subscribe(
-      resources => this.dragons = this.sortItem(resources),
+      resources => (this.dragons = this.sortItem(resources), this.spinner.hide()),
       error => alert('Erro ao carregar a lista')
     );
   }
@@ -54,8 +43,14 @@ export class ListComponent implements OnInit {
     })
   }
 
-  toggleSearch() {
-    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden';
+  deletarItem(id) {
+    if (id) {
+      console.log(id);
+      this.dragonService.delete(id)
+        .pipe(first())
+        .subscribe(data => (alert('Dragão deletado com sucesso..'), this.ngOnInit()), err => alert('Ops...Erro inesperado! tente novamente.'))
+    }
+
   }
 
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { Router, ActivatedRoute } from '@angular/router'
 import { DragonsService } from '../dragons.service';
 import { first } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-form',
@@ -16,7 +17,10 @@ export class FormComponent implements OnInit {
   idDragon: string;
 
   constructor(private router: Router,
-    private fb: FormBuilder, private route: ActivatedRoute, private dragonService: DragonsService) { }
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private dragonService: DragonsService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.baseDGForm();
@@ -30,28 +34,34 @@ export class FormComponent implements OnInit {
   }
 
   getDragon(id) {
+    this.spinner.show();
     this.dragonService
       .getOne(id)
       .pipe(first())
       .subscribe(dragon => {
         this.dgForm.setValue({ name: dragon.name, type: dragon.type });
+        this.spinner.hide();
       });
   }
 
   onSubmit(formValue) {
+
     this.isUpdate ? this.update(this.idDragon, formValue) : this.save(formValue)
+
   }
 
   save(data) {
+    this.spinner.show();
     this.dragonService.save(data)
       .pipe(first())
-      .subscribe(data => (alert('Dragão salvo com sucesso...'), this.router.navigate(['/dragons'])), err => alert('Ops..Erro inesperado! tente novamente...'))
+      .subscribe(data => (alert('Dragão salvo com sucesso...'), this.router.navigate(['/dragons']), this.spinner.hide()), err => alert('Ops..Erro inesperado! tente novamente...'))
   }
 
   update(id, data) {
+    this.spinner.show();
     this.dragonService.update(id, data)
       .pipe(first())
-      .subscribe(data => alert('Dragão salvo com sucesso...'), err => alert('Ops..Erro inesperado! tente novamente...'))
+      .subscribe(data => (alert('Dragão salvo com sucesso...'), this.router.navigate(['/dragons']), this.spinner.hide()), err => alert('Ops..Erro inesperado! tente novamente...'))
   }
 
   baseDGForm() {
