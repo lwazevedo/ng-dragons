@@ -1,16 +1,17 @@
 <section class="content">
-
+    <div class="row mb-2">
+        <div class="col-sm-3 col-xs-12">
+            <button [routerLink]="['/dragons/novo']" class="btn btn-sm btn-success">Novo</button>
+        </div>
+    </div>
     <div class="row">
-
-        <div *ngFor="let dragon of dragons" class="col-sm-6 col-xs-12">
-            <app-item *ngIf="dragon.name !== ' '" [dragon]="dragon"></app-item>
+        <div *ngFor="let dragon of dragons" class="col-sm-3 col-xs-12">
+            <app-item [dragon]="dragon"></app-item>
         </div>
         <div *ngIf="dragons?.length === 0" class="col-xs-12">
             <p class="lead text-center">
-                Não foram encontrados dragões.
+                Lista de dragões está vazia....
             </p>
         </div>
-
     </div>
-
 </section>

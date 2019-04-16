@@ -18,7 +18,19 @@ export class DragonsService {
         return this.http.get<Item>(`${URL_API}/dragon`)
     }
 
+    save(dragon: Item): Observable<Item> {
+        return this.http.post<Item>(`${URL_API}/dragon`, dragon)
+    }
+
+    update(id: string, dragon: Item): Observable<Item> {
+        return this.http.put<Item>(`${URL_API}/dragon/${id}`, dragon)
+    }
+
     getOne(id: string): Observable<Item> {
-        return this.http.get<Item>(`${URL_API}/restaurants/${id}`)
+        return this.http.get<Item>(`${URL_API}/dragon/${id}`)
+    }
+
+    delete(id: string): Observable<Item> {
+        return this.http.delete<Item>(`${URL_API}/dragon/${id}`)
     }
 }

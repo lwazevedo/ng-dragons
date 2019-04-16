@@ -43,10 +43,13 @@ export class ListComponent implements OnInit {
     );
   }
 
+
   sortItem(items) {
-    return items.filter(item => item.name !== ' ').sort((a, b) => {
-      if (a.name > b, name) return 1;
-      if (a.name < b.name) return -1;
+    return items.sort((a, b) => {
+      if (a.name !== ' ') {
+        if (a.name > b, name) return 1;
+        if (a.name < b.name) return -1;
+      }
       return 0;
     })
   }

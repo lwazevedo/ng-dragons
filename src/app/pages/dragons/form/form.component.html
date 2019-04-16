@@ -1,0 +1,40 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <form [formGroup]="dgForm" novalidate>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header ml-3">
+          <i class="fa fa-edit"></i> Titulo
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <p class="lead">Informe os dados a seguir:</p>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <app-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
+          <input class="form-control" formControlName="name" placeholder="Nome" autocomplete="off">
+        </app-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <app-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Tipo">
+          <input class="form-control" formControlName="type" placeholder="Tipo" autocomplete="off">
+        </app-input-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-right">
+        <button class="btn btn-success ml-3" [disabled]="!dgForm.valid" (click)="onSubmit(dgForm.value)">
+          <i class="fa fa-credit-card"></i> Salvar
+        </button>
+        <button [routerLink]="['/dragons']" class="btn btn-danger ml-3">
+          <i class="fa fa-undo"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

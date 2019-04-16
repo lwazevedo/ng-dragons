@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Item } from './item.model'
+import { DragonsService } from '../../dragons.service';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -20,9 +23,18 @@ export class ItemComponent implements OnInit {
   itemState = 'ready'
   @Input() dragon: Item
 
-  constructor() { }
+  constructor(private dragonService: DragonsService, private router: Router, ) { }
 
   ngOnInit() {
+  }
+
+  deletarItem(id) {
+    if (id) {
+      this.dragonService.delete(id)
+        .pipe(first())
+        .subscribe(data => (alert('Dragão deletado com sucesso..'), this.router.navigate(['/dragons'])), err => alert('Ops...Erro inesperado! tente novamente.'))
+    }
+
   }
 
 }

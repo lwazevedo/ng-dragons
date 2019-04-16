@@ -1,18 +1,13 @@
-<div class="small-box bg-green" [@itemAppeared]="itemState">
-  <div class="inner">
-    <h4>{{dragon.name}}</h4>
-    <span>
-      <p><small>{{dragon.type}}</small></p>
-      <p><small>{{dragon.createdAt | date:'dd/MM/yyyy'}}</small></p>
-    </span>
+<div class="card border-success mb-3">
+  <div class="card-header bg-transparent border-success">{{dragon.name}}</div>
+  <div class="card-body text-success">
+    <h6 class="card-subtitle mb-2 text-muted">Criado em: {{dragon.createdAt | dateFormat}}</h6>
+    <p class="card-text text-muted">Tipo: {{dragon.type}}
+    </p>
   </div>
-  <div class="icon">
-    <i class="fa  fa-user"></i>
+  <div class="card-footer bg-transparent border-success text-rigth">
+
+    <a href="#" [routerLink]="['/dragons/editar', dragon.id]" class="btn btn-sm btn-default mr-2">Editar</a>
+    <a class="btn btn-sm btn-danger ml-2" (click)="deletarItem(dragon.id)">Deletar</a>
   </div>
-  <a [routerLink]="['/dragons', dragon.id]" class="small-box-footer color-text-star">
-    More info <i class="fa fa-arrow-circle-right"></i>
-  </a>
-  <!-- <a [routerLink]="['/dragons', dragon.id]" class="small-box-footer color-text-star">
-    Delete <i class="fa fa-arrow-circle-right"></i>
-  </a> -->
 </div>
