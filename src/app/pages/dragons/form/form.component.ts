@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
   dgForm: FormGroup;
   isUpdate = false;
   idDragon: string;
-
+  titulo = 'Novo Dragão'
   constructor(private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
     this.baseDGForm();
     this.route.params.subscribe(param => {
       if (param.id) {
+        this.titulo = 'Atualizar Dragão'
         this.isUpdate = true;
         this.idDragon = param.id
         this.getDragon(param.id);
@@ -78,8 +79,8 @@ export class FormComponent implements OnInit {
 
   baseDGForm() {
     this.dgForm = this.fb.group({
-      'name': ['', [Validators.required, Validators.minLength(2)]],
-      'type': ['', [Validators.required, Validators.minLength(2)]],
+      'name': [null, [Validators.required, Validators.minLength(2)]],
+      'type': [null, [Validators.required, Validators.minLength(2)]],
     });
   }
 

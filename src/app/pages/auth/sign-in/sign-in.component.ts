@@ -23,14 +23,18 @@ export class SignInComponent implements OnInit {
 
   submitForm() {
     this.submittingForm = true;
+    if (this.loginForm.invalid) return;
+
     localStorage.setItem('isLoggedin', 'true');
     this.router.navigate(['/dragons']);
   }
 
   baseLoginForm() {
     this.loginForm = this.fb.group({
-      'email': [this.emailTesting, [Validators.required, CustomValidators.email, CustomValidators.equal(this.emailTesting)]],
-      'password': [this.passwordTestig, [Validators.required, CustomValidators.equal(this.passwordTestig)]]
+      'email': [this.emailTesting, [Validators.required,
+      CustomValidators.email, CustomValidators.equal(this.emailTesting)]],
+      'password': [this.passwordTestig, [Validators.required,
+      CustomValidators.equal(this.passwordTestig)]]
     });
   }
 

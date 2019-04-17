@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
-.content-wrapper {
-  min-height: 640px !important;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+main.container {
+  padding: 60px 15px 0;
+}
+
+code {
+  font-size: 80%;
 }

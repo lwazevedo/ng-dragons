@@ -1,0 +1,9 @@
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #3ca659;
+  border-radius: 4px;
+}
+
+.my-pagination /deep/ .ngx-pagination a:hover {
+  /* background: #3ca659; */
+  border-radius: 4px;
+}

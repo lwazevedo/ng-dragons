@@ -1,35 +1,38 @@
-<section class="content-header">
-    <div class="row">
-        <div class="col-sm-3 col-xs-12">
-            <button [routerLink]="['/dragons/novo']" class="btn btn-sm btn-success">Novo</button>
-        </div>
+<div *ngIf="dragons?.length > 0" class="row mt-2 mb-2">
+    <div class="col-md-3">
+        <h5>Lista de Dragões</h5>
     </div>
-
-</section>
-<section class="content">
-    <div class="row">
-        <div *ngFor="let dragon of dragons" class="col-sm-3 col-xs-12">
-            <div class="card border-success mb-3">
-                <div class="card-header bg-transparent border-success">{{dragon.name}}</div>
-                <div class="card-body text-success">
-                    <h6 class="card-subtitle mb-2 text-muted">Criado em: {{dragon.createdAt | dateFormat}}</h6>
-                    <p class="card-text text-muted">Tipo: {{dragon.type}}
-                    </p>
-                </div>
-                <div class="card-footer bg-transparent border-success text-rigth">
-                    <button type="button" class="btn btn-sm btn-default ml-2"
-                        [routerLink]="['/dragons/editar', dragon.id]"
-                        class="btn btn-sm btn-default mr-2">Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger ml-2"
-                        (click)="deletarItem(dragon.id)">Deletar</button>
-                </div>
+    <div class="col-md-9">
+        <button [routerLink]="['/dragons/novo']" class="btn btn-sm btn-success pull-right">Novo</button>
+    </div>
+</div>
+<div class="row mb-2 mt-2">
+    <div class="col-md-12 text-center">
+        <pagination-controls class="my-pagination" directionLinks="false" autoHide="true"
+            (pageChange)="pageChange($event)">
+        </pagination-controls>
+    </div>
+</div>
+<div *ngIf="dragons?.length > 0" class="row">
+    <div *ngFor="let dragon of dragons | paginate: config" class="col-sm-3 col-xs-12">
+        <div class="card  mb-3">
+            <div class="card-header text-white bg-dark">{{dragon.name}}</div>
+            <div class="card-body text-white bg-dark">
+                <h6 class="card-subtitle mb-2 ">Criado em: {{dragon.createdAt | dateFormat}}</h6>
+                <p class="card-text ">Tipo: {{dragon.type}}
+                </p>
             </div>
-            <!-- <app-item [dragon]="dragon"></app-item> -->
-        </div>
-        <div *ngIf="dragons?.length === 0" class="col-xs-12">
-            <p class="lead text-center">
-                Lista de dragões está vazia....
-            </p>
+            <div class="card-footer  bg-dark  text-rigth">
+                <button type="button" [routerLink]="['/dragons/editar', dragon.id]"
+                    class="btn btn-sm btn-block btn-success">Editar</button>
+                <button type="button" class="btn btn-sm btn-block btn-danger"
+                    (click)="deletarItem(dragon.id)">Deletar</button>
+            </div>
         </div>
     </div>
-</section>
+    <div *ngIf="dragons?.length === 0" class="col-xs-12">
+        <p class="lead text-center">
+            Lista de dragões está vazia....
+        </p>
+    </div>
+</div>

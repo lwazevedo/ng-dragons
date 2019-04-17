@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputComponent } from './input/input.component';
 import { HeaderComponent } from './header/header.component'
-import { DateFormat } from './pipes/date-format.pipe'
+import { DateFormat } from './pipes/date-format.pipe';
+import { FooterComponent } from './footer/footer.component'
 
 
 @NgModule({
-  declarations: [InputComponent, HeaderComponent, DateFormat],
+  declarations: [HeaderComponent, DateFormat, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [InputComponent, HeaderComponent, DateFormat]
+  exports: [HeaderComponent, DateFormat, FooterComponent]
 })
 export class SharedModule { }

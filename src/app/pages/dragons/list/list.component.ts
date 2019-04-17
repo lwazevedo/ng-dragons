@@ -18,12 +18,16 @@ export class ListComponent implements OnInit {
   searchBarState = 'hidden'
   searchForm: FormGroup;
   searchControl: FormControl;
+  config: any;
 
   constructor(private dragonService: DragonsService,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService) {
-
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 8
+    }
   }
 
   ngOnInit() {
@@ -38,6 +42,9 @@ export class ListComponent implements OnInit {
     );
   }
 
+  pageChange(newPage: number) {
+    this.config.currentPage = newPage
+  }
 
   sortItem(items) {
     return items.sort((a, b) => {

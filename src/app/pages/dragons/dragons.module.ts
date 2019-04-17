@@ -9,6 +9,7 @@ import { ListComponent } from './list/list.component';
 import { DragonsService } from './dragons.service'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination'
 import { FormComponent } from './form/form.component';
 
 
@@ -21,7 +22,8 @@ import { FormComponent } from './form/form.component';
     SharedModule,
     RouterModule.forChild(DragonsRoutingModule),
     ReactiveFormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxPaginationModule
 
   ],
   providers: [
