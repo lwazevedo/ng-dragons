@@ -1,9 +1,12 @@
-<section class="content">
-    <div class="row mb-2">
+<section class="content-header">
+    <div class="row">
         <div class="col-sm-3 col-xs-12">
             <button [routerLink]="['/dragons/novo']" class="btn btn-sm btn-success">Novo</button>
         </div>
     </div>
+
+</section>
+<section class="content">
     <div class="row">
         <div *ngFor="let dragon of dragons" class="col-sm-3 col-xs-12">
             <div class="card border-success mb-3">

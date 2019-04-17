@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { first } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 import { DragonsService } from '../dragons.service';
-import { Item } from './item/item.model';
+import { List } from './list.model';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -13,22 +14,27 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ListComponent implements OnInit {
 
-  dragons: Item;
+  dragons: List;
   searchBarState = 'hidden'
   searchForm: FormGroup;
   searchControl: FormControl;
 
   constructor(private dragonService: DragonsService,
     private fb: FormBuilder,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService) {
 
   }
 
   ngOnInit() {
     this.spinner.show();
     this.dragonService.getAll().subscribe(
-      resources => (this.dragons = this.sortItem(resources), this.spinner.hide()),
-      error => alert('Erro ao carregar a lista')
+      resources =>
+        (this.dragons = this.sortItem(resources),
+          this.spinner.hide()),
+      error =>
+        (this.toastr.error('Ops...Erro inesperado! tente novamente.'),
+          this.spinner.hide())
     );
   }
 
@@ -45,10 +51,13 @@ export class ListComponent implements OnInit {
 
   deletarItem(id) {
     if (id) {
-      console.log(id);
       this.dragonService.delete(id)
         .pipe(first())
-        .subscribe(data => (alert('Dragão deletado com sucesso..'), this.ngOnInit()), err => alert('Ops...Erro inesperado! tente novamente.'))
+        .subscribe(data => {
+          this.toastr.success('Dragão deletado com sucesso..');
+          this.ngOnInit();
+        },
+          err => this.toastr.error('Ops...Erro inesperado! tente novamente.'))
     }
 
   }

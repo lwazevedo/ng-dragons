@@ -6,7 +6,6 @@ import { DragonsRoutingModule } from './dragons-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContainerComponent } from './container/container.component';
 import { ListComponent } from './list/list.component';
-import { ItemComponent } from './list/item/item.component';
 import { DragonsService } from './dragons.service'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -15,7 +14,7 @@ import { FormComponent } from './form/form.component';
 
 
 @NgModule({
-  declarations: [ContainerComponent, ListComponent, ItemComponent, FormComponent],
+  declarations: [ContainerComponent, ListComponent, FormComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -23,6 +22,7 @@ import { FormComponent } from './form/form.component';
     RouterModule.forChild(DragonsRoutingModule),
     ReactiveFormsModule,
     NgxSpinnerModule
+
   ],
   providers: [
     DragonsService

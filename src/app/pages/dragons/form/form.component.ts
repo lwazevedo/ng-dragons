@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { DragonsService } from '../dragons.service';
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +21,8 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private dragonService: DragonsService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.baseDGForm();
@@ -45,23 +47,33 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-
     this.isUpdate ? this.update(this.idDragon, formValue) : this.save(formValue)
-
   }
 
   save(data) {
     this.spinner.show();
     this.dragonService.save(data)
       .pipe(first())
-      .subscribe(data => (alert('Dragão salvo com sucesso...'), this.router.navigate(['/dragons']), this.spinner.hide()), err => alert('Ops..Erro inesperado! tente novamente...'))
+      .subscribe(data =>
+        (this.toastr.success('Dragão salvo com sucesso...'),
+          this.router.navigate(['/dragons']),
+          this.spinner.hide()),
+        err =>
+          (this.toastr.error('Ops...Erro inesperado! tente novamente.')
+            , this.spinner.hide()))
   }
 
   update(id, data) {
     this.spinner.show();
     this.dragonService.update(id, data)
       .pipe(first())
-      .subscribe(data => (alert('Dragão salvo com sucesso...'), this.router.navigate(['/dragons']), this.spinner.hide()), err => alert('Ops..Erro inesperado! tente novamente...'))
+      .subscribe(data =>
+        (this.toastr.success('Dragão salvo com sucesso...'),
+          this.router.navigate(['/dragons']),
+          this.spinner.hide()),
+        err =>
+          (this.toastr.error('Ops...Erro inesperado! tente novamente.'),
+            this.spinner.hide()))
   }
 
   baseDGForm() {

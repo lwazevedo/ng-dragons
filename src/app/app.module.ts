@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
+import { ToastrModule } from 'ngx-toastr';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -21,6 +21,11 @@ import { FullComponent } from './layouts/full/full.component';
     SharedModule,
     RouterModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }),
     AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
